@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Niaz Rahman — Portfolio
 
-## Getting Started
+Personal portfolio site built with Next.js (App Router, static export), TypeScript and Tailwind CSS,
+hosted on Cloudflare Workers as static assets.
 
-First, run the development server:
+## Local development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Build
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build      # writes the static site to ./out
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+`next start` is not used — the site is a static export. To preview the exact Cloudflare setup locally
+(requires Node 22+): `npm run preview`.
 
-## Learn More
+## Deploying to Cloudflare
 
-To learn more about Next.js, take a look at the following resources:
+Config lives in [wrangler.jsonc](wrangler.jsonc) (serves `./out`, uses `404.html` for unknown URLs) and
+[public/_headers](public/_headers) (security + caching headers).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Option A — Git integration (recommended, auto-deploys on every push)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Push this repo to GitHub.
+2. Cloudflare dashboard → **Workers & Pages** → **Create** → **Import a repository** → pick the repo.
+3. Settings:
+   - Build command: `npm run build`
+   - Deploy command: `npx wrangler deploy`
+   - Node version comes from [.node-version](.node-version) (22).
+4. Deploy. The site is live at `https://niaz-rahman-portfolio.<your-subdomain>.workers.dev`.
 
-## Deploy on Vercel
+### Option B — Deploy from this computer
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Requires Node 22+ (`nvm install 22` then `nvm use 22`).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npx wrangler login
+npm run deploy
+```
+
+### Custom domain
+
+Dashboard → your Worker → **Settings** → **Domains & Routes** → **Add** → **Custom domain**.
+The domain must be on Cloudflare DNS.
+
+## Content
+
+All resume facts live in [src/lib/data.ts](src/lib/data.ts) — edit that file to update copy anywhere on
+the site, including `/resume`.
+
+## Known gaps
+
+- Project links point to the GitHub profile (`github.com/niazbuoy08`) rather than individual repos.
+- `/resume` is a printable page ("Print / Save as PDF"); there's no static PDF download.

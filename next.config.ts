@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: "export",
+  // Static export has no image-optimisation server; assets in /public are pre-optimised.
+  images: { unoptimized: true },
 };
 
 export default nextConfig;
