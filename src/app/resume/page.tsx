@@ -1,183 +1,84 @@
 import type { Metadata } from "next";
-import {
-  awards,
-  education,
-  experience,
-  leadership,
-  profile,
-  projects,
-  skillGroups,
-} from "@/lib/data";
-import { ArrowRightIcon } from "@/components/icons";
-import PrintButton from "@/components/PrintButton";
-import Rich from "@/components/Rich";
+import { profile } from "@/lib/data";
+import { ArrowRightIcon, DocumentIcon, ExternalLinkIcon } from "@/components/icons";
+
+const PDF_PATH = "/Niaz-Rahman-Resume-2026.pdf";
 
 export const metadata: Metadata = {
   title: "Resume — Niaz Rahman",
-  description: "Full resume for Niaz Rahman — Business Analyst at Sheba Technologies and Software Engineering graduate.",
+  description: "Resume of Niaz Rahman — Business Analyst at Sheba Technologies and Software Engineering graduate.",
 };
 
 export default function ResumePage() {
   return (
-    <div className="min-h-full bg-background">
-      <div className="mx-auto max-w-3xl px-6 py-12 lg:px-8">
-        <div className="flex items-center justify-between print:hidden">
-          {/* Full page load on purpose: Next 16 static export 404s on client-side segment fetches. */}
-          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-          <a href="/" className="inline-flex items-center gap-1.5 text-[14px] font-medium text-muted hover:text-foreground">
-            <ArrowRightIcon className="h-4 w-4 rotate-180" />
-            Back to portfolio
-          </a>
-          <PrintButton />
+    <main className="min-h-full bg-background">
+      <div className="mx-auto max-w-5xl px-6 py-8 lg:px-8 lg:py-10">
+        {/* Full page load on purpose: Next 16 static export 404s on client-side segment fetches. */}
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+        <a
+          href="/"
+          className="inline-flex items-center gap-1.5 text-[14px] font-medium text-muted transition-colors hover:text-foreground"
+        >
+          <ArrowRightIcon className="h-4 w-4 rotate-180" />
+          Back to portfolio
+        </a>
+
+        <div className="mt-8 flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <p className="flex items-center gap-3 font-mono text-[12px] font-medium uppercase tracking-[0.16em] text-accent">
+              <span className="h-px w-8 bg-accent/40" />
+              Resume
+            </p>
+            <h1 className="mt-3 text-[2rem] font-extrabold leading-tight tracking-[-0.025em] text-foreground sm:text-[2.4rem]">
+              {profile.name}
+            </h1>
+            <p className="mt-1.5 text-[15px] text-muted">{profile.tagline}</p>
+          </div>
+
+          <div className="flex flex-wrap gap-3">
+            <a
+              href={PDF_PATH}
+              download="Niaz-Rahman-Resume-2026.pdf"
+              className="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-3 text-[14.5px] font-semibold text-white shadow-[0_10px_24px_-12px_rgba(37,99,235,0.7)] transition-colors hover:bg-blue-700"
+            >
+              <DocumentIcon className="h-4.5 w-4.5" />
+              Download PDF
+            </a>
+            <a
+              href={PDF_PATH}
+              target="_blank"
+              rel="noreferrer"
+              className="hidden items-center gap-2 rounded-lg border-[1.5px] border-border bg-surface md:inline-flex px-5 py-3 text-[14.5px] font-semibold text-foreground transition-colors hover:border-foreground/40"
+            >
+              <ExternalLinkIcon className="h-4 w-4" />
+              Open in new tab
+            </a>
+          </div>
         </div>
 
-        <article className="mt-10 rounded-2xl border border-border bg-surface p-8 print:border-0 print:p-0 sm:p-12">
-          <header className="border-b border-border pb-6">
-            <h1 className="text-[1.9rem] font-semibold tracking-tight text-foreground">{profile.name}</h1>
-            <p className="mt-1 text-[14px] text-muted">{profile.tagline}</p>
-            <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[13px] text-subtle">
-              <span>{profile.location}</span>
-              <span>{profile.phone}</span>
-              <span>{profile.email}</span>
-              <span>{profile.githubLabel}</span>
-              <span>{profile.linkedinLabel}</span>
-            </p>
-          </header>
+        <iframe
+          src={`${PDF_PATH}#view=FitH&navpanes=0`}
+          title="Niaz Rahman — resume (PDF)"
+          className="mt-8 hidden h-[85vh] min-h-[640px] w-full rounded-2xl border border-border bg-surface shadow-[0_20px_50px_-30px_rgba(15,23,42,0.4)] md:block"
+        />
 
-          <Section title="Professional Summary">
-            <p className="text-[14px] leading-relaxed text-muted">{profile.summary}</p>
-          </Section>
-
-          <Section title="Technical Skills">
-            <dl className="space-y-2.5">
-              {skillGroups.map((group) => (
-                <div key={group.label} className="grid grid-cols-[9rem_1fr] gap-4 text-[13.5px]">
-                  <dt className="font-semibold text-foreground">{group.label}</dt>
-                  <dd className="text-muted">{group.skills.join(", ")}</dd>
-                </div>
-              ))}
-            </dl>
-          </Section>
-
-          <Section title="Engineering Projects">
-            <div className="space-y-6">
-              {projects.map((project) => (
-                <div key={project.slug}>
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-                    <h3 className="text-[14.5px] font-semibold text-foreground">
-                      {project.name}, {project.tagline}
-                    </h3>
-                    <span className="text-[12.5px] text-subtle">{project.period}</span>
-                  </div>
-                  <p className="text-[12.5px] text-subtle">{project.tech.join(" · ")}</p>
-                  <ul className="mt-2 space-y-1.5">
-                    {project.bullets.map((bullet) => (
-                      <li key={bullet} className="flex gap-2 text-[13px] leading-relaxed text-muted">
-                        <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-subtle" />
-                        <span><Rich text={bullet} /></span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </Section>
-
-          <Section title="Professional Experience">
-            <div className="space-y-6">
-              {experience.map((job) => (
-                <div key={job.company}>
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-                    <h3 className="text-[14.5px] font-semibold text-foreground">{job.company}</h3>
-                    <span className="text-[12.5px] text-subtle">{job.period}</span>
-                  </div>
-                  <p className="text-[12.5px] italic text-subtle">
-                    {job.role} · {job.location}
-                  </p>
-                  <ul className="mt-2 space-y-1.5">
-                    {job.bullets.map((bullet) => (
-                      <li key={bullet} className="flex gap-2 text-[13px] leading-relaxed text-muted">
-                        <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-subtle" />
-                        <span><Rich text={bullet} /></span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </Section>
-
-          <Section title="Education">
-            <div className="space-y-3">
-              {education.map((item) => (
-                <div key={item.school + item.period}>
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-                    <h3 className="text-[14px] font-semibold text-foreground">{item.school}</h3>
-                    <span className="text-[12.5px] text-subtle">{item.period}</span>
-                  </div>
-                  <p className="text-[13px] italic text-subtle">
-                    {item.credential} · {item.location}
-                  </p>
-                  {item.detail && <p className="mt-1 text-[12.5px] leading-relaxed text-subtle">{item.detail}</p>}
-                </div>
-              ))}
-            </div>
-          </Section>
-
-          <Section title="Leadership & Extracurricular">
-            <div className="space-y-5">
-              {leadership.map((item) => (
-                <div key={item.org}>
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-                    <h3 className="text-[14px] font-semibold text-foreground">{item.org}</h3>
-                    <span className="text-[12.5px] text-subtle">{item.period}</span>
-                  </div>
-                  <p className="text-[13px] italic text-subtle">{item.role}</p>
-                  <ul className="mt-2 space-y-1.5">
-                    {item.bullets.map((bullet) => (
-                      <li key={bullet} className="flex gap-2 text-[13px] leading-relaxed text-muted">
-                        <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-subtle" />
-                        {bullet}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </Section>
-
-          <Section title="Honours & Awards" last>
-            <ul className="space-y-1.5">
-              {awards.map((award) => (
-                <li key={award.title} className="flex justify-between gap-4 text-[13px] text-muted">
-                  <span>
-                    {award.title}
-                    {award.org ? `, ${award.org}` : ""}
-                  </span>
-                  <span className="shrink-0 text-subtle">{award.scale}</span>
-                </li>
-              ))}
-            </ul>
-          </Section>
-        </article>
+        {/* Most mobile browsers can't render a PDF inside a page, so phones get a hand-off to the native viewer. */}
+        <div className="mt-8 rounded-2xl border border-border bg-surface p-6 text-center md:hidden">
+          <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-accent-soft text-accent">
+            <DocumentIcon className="h-7 w-7" />
+          </span>
+          <p className="mt-4 text-[16px] font-bold text-foreground">Resume (PDF)</p>
+          <p className="mt-1 text-[14px] text-muted">Opens in your phone&apos;s PDF viewer.</p>
+          <a
+            href={PDF_PATH}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-5 flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-5 py-3.5 text-[15px] font-semibold text-white"
+          >
+            View PDF
+          </a>
+        </div>
       </div>
-    </div>
-  );
-}
-
-function Section({
-  title,
-  children,
-  last = false,
-}: {
-  title: string;
-  children: React.ReactNode;
-  last?: boolean;
-}) {
-  return (
-    <section className={`py-6 ${last ? "" : "border-b border-border"}`}>
-      <h2 className="mb-4 text-[12px] font-semibold uppercase tracking-[0.1em] text-accent">{title}</h2>
-      {children}
-    </section>
+    </main>
   );
 }
