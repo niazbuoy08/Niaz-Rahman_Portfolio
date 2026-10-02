@@ -1,4 +1,5 @@
 import { awards, experience, leadership } from "@/lib/data";
+import OrgLogo from "@/components/OrgLogo";
 import Rich from "@/components/Rich";
 import SectionHeading from "@/components/SectionHeading";
 
@@ -76,8 +77,13 @@ export default function Experience() {
             {leadership.map((item) => (
               <article key={item.org} className="rounded-2xl border border-border bg-surface p-5 sm:p-7">
                 <p className="font-mono text-[12px] uppercase tracking-wider text-subtle">{item.period}</p>
-                <h4 className="mt-3 text-[16px] font-semibold text-foreground">{item.role}</h4>
-                <p className="mt-0.5 text-[14px] font-medium text-accent">{item.org}</p>
+                <div className="mt-4 flex items-center gap-4">
+                  <OrgLogo name={item.logo} initials={item.initials} label={item.org} />
+                  <div className="min-w-0">
+                    <h4 className="text-[16px] font-semibold leading-snug text-foreground">{item.role}</h4>
+                    <p className="mt-0.5 text-[14px] font-medium text-accent">{item.org}</p>
+                  </div>
+                </div>
                 <ul className="mt-4 space-y-2.5">
                   {item.bullets.map((bullet) => (
                     <li key={bullet} className="flex gap-3 text-[14px] leading-relaxed text-muted">

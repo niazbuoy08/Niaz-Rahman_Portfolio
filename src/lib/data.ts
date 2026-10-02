@@ -140,6 +140,8 @@ export const experience = [
 export const leadership = [
   {
     org: "IUT Career & Business Society",
+    logo: "iut-cbs",
+    initials: "CBS",
     role: "Vice President, Development and Planning",
     period: "Feb 2024 – Present",
     location: "Dhaka, Bangladesh",
@@ -150,6 +152,8 @@ export const leadership = [
   },
   {
     org: "British American Tobacco Bangladesh (BATB)",
+    logo: "batb",
+    initials: "BAT",
     role: "XCEED Talent Campus Ambassador",
     period: "Jul 2025 – Present",
     location: "Dhaka, Bangladesh",
