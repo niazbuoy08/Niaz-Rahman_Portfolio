@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { profile } from "@/lib/data";
 import { ArrowRightIcon, DocumentIcon, ExternalLinkIcon } from "@/components/icons";
+import ResumeViewer from "@/components/ResumeViewer";
 
 const PDF_PATH = "/Niaz-Rahman-Resume-2026.pdf";
 
@@ -48,7 +49,7 @@ export default function ResumePage() {
               href={PDF_PATH}
               target="_blank"
               rel="noreferrer"
-              className="hidden items-center gap-2 rounded-lg border-[1.5px] border-border bg-surface md:inline-flex px-5 py-3 text-[14.5px] font-semibold text-foreground transition-colors hover:border-foreground/40"
+              className="inline-flex items-center gap-2 rounded-lg border-[1.5px] border-border bg-surface px-5 py-3 text-[14.5px] font-semibold text-foreground transition-colors hover:border-foreground/40"
             >
               <ExternalLinkIcon className="h-4 w-4" />
               Open in new tab
@@ -56,27 +57,8 @@ export default function ResumePage() {
           </div>
         </div>
 
-        <iframe
-          src={`${PDF_PATH}#view=FitH&navpanes=0`}
-          title="Niaz Rahman — resume (PDF)"
-          className="mt-8 hidden h-[85vh] min-h-[640px] w-full rounded-2xl border border-border bg-surface shadow-[0_20px_50px_-30px_rgba(15,23,42,0.4)] md:block"
-        />
-
-        {/* Most mobile browsers can't render a PDF inside a page, so phones get a hand-off to the native viewer. */}
-        <div className="mt-8 rounded-2xl border border-border bg-surface p-6 text-center md:hidden">
-          <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-accent-soft text-accent">
-            <DocumentIcon className="h-7 w-7" />
-          </span>
-          <p className="mt-4 text-[16px] font-bold text-foreground">Resume (PDF)</p>
-          <p className="mt-1 text-[14px] text-muted">Opens in your phone&apos;s PDF viewer.</p>
-          <a
-            href={PDF_PATH}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-5 flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-5 py-3.5 text-[15px] font-semibold text-white"
-          >
-            View PDF
-          </a>
+        <div className="mt-8">
+          <ResumeViewer src={PDF_PATH} />
         </div>
       </div>
     </main>

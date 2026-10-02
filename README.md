@@ -53,7 +53,8 @@ The domain must be on Cloudflare DNS.
 All resume facts live in [src/lib/data.ts](src/lib/data.ts) — edit that file to update copy anywhere on
 the site, including `/resume`.
 
-## Known gaps
+## Resume
 
-- Project links point to the GitHub profile (`github.com/niazbuoy08`) rather than individual repos.
-- `/resume` is a printable page ("Print / Save as PDF"); there's no static PDF download.
+`/resume` renders [public/Niaz-Rahman-Resume-2026.pdf](public/Niaz-Rahman-Resume-2026.pdf) in-page with PDF.js
+(works on phones too). To update it, replace that file — keep the same name — and push.
+The PDF.js worker is copied into `public/` automatically by `npm run dev` / `npm run build`.

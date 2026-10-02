@@ -43,3 +43,6 @@ next-env.d.ts
 # cloudflare
 .wrangler
 .dev.vars*
+
+# copied from pdfjs-dist at dev/build time
+/public/pdf.worker.min.mjs

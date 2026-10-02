@@ -42,10 +42,10 @@ export default function Projects() {
                     <p className="mt-1.5 font-mono text-[12px] text-subtle">{project.period}</p>
                   </div>
                   <a
-                    href={profile.github}
+                    href={project.repo}
                     target="_blank"
                     rel="noreferrer"
-                    aria-label={`${project.name} on GitHub`}
+                    aria-label={`${project.name} repository on GitHub`}
                     className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border text-foreground transition-colors group-hover:border-accent group-hover:bg-accent group-hover:text-white"
                   >
                     <ArrowRightIcon className="h-4.5 w-4.5" />

@@ -172,6 +172,7 @@ export const awards = [
 export const projects = [
   {
     slug: "courier-ops",
+    repo: "https://github.com/niazbuoy08/Courier-Ops",
     name: "Courier Ops",
     tagline: "Parcel Delivery Operations Platform",
     summary:
@@ -189,6 +190,7 @@ export const projects = [
   },
   {
     slug: "churn-prediction",
+    repo: "https://github.com/niazbuoy08/AI-Powered-Customer-Churn-Prediction-and-Retention-System",
     name: "AI Churn & Retention",
     tagline: "AI-Powered Customer Churn Prediction & Retention System",
     summary:
@@ -205,6 +207,7 @@ export const projects = [
   },
   {
     slug: "smarthire",
+    repo: "https://github.com/AntaraArifa/SmartHire",
     name: "SmartHire",
     tagline: "Semantic Job Matching Platform",
     summary:
