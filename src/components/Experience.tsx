@@ -22,7 +22,7 @@ export default function Experience() {
           {experience.map((job) => (
             <article
               key={job.company}
-              className="grid gap-8 rounded-3xl border border-border bg-background/60 p-6 sm:p-10 lg:grid-cols-[260px_1fr] lg:gap-12"
+              className="grid gap-8 rounded-3xl border border-border bg-background/60 p-5 sm:p-10 lg:grid-cols-[260px_1fr] lg:gap-12"
             >
               <div>
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-foreground text-[18px] font-semibold text-white">
@@ -74,7 +74,7 @@ export default function Experience() {
           </h3>
           <div className="mt-6 grid gap-5 md:grid-cols-2">
             {leadership.map((item) => (
-              <article key={item.org} className="rounded-2xl border border-border bg-surface p-6 sm:p-7">
+              <article key={item.org} className="rounded-2xl border border-border bg-surface p-5 sm:p-7">
                 <p className="font-mono text-[12px] uppercase tracking-wider text-subtle">{item.period}</p>
                 <h4 className="mt-3 text-[16px] font-semibold text-foreground">{item.role}</h4>
                 <p className="mt-0.5 text-[14px] font-medium text-accent">{item.org}</p>

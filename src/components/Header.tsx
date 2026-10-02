@@ -59,7 +59,7 @@ export default function Header() {
           Niaz <span className="text-accent">Rahman</span>
         </a>
 
-        <nav className="hidden items-center gap-9 md:flex">
+        <nav className="hidden items-center gap-6 md:flex lg:gap-9">
           {NAV_ITEMS.map((item) => {
             const active = activeId === item.href.slice(1);
             return (

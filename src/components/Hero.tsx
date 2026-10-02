@@ -111,7 +111,7 @@ export default function Hero() {
 
           <div
             aria-hidden="true"
-            className="absolute top-[36%] right-[-6%] z-0 hidden h-24 w-20 bg-[radial-gradient(circle,rgba(100,116,139,0.35)_1.4px,transparent_1.6px)] [background-size:14px_14px] sm:block"
+            className="absolute top-[36%] right-0 z-0 hidden h-24 w-20 xl:right-[-6%] bg-[radial-gradient(circle,rgba(100,116,139,0.35)_1.4px,transparent_1.6px)] [background-size:14px_14px] sm:block"
           />
 
           <Image
@@ -129,33 +129,33 @@ export default function Hero() {
             tint="bg-blue-50 text-accent"
             title="Business Analyst"
             body="Bridging business and technology"
-            className="top-[24%] left-0 w-[140px] sm:top-[26%] sm:left-[-2%] sm:w-[168px] lg:left-[-4%]"
+            className="top-[52%] left-0 w-[124px] sm:top-[26%] sm:left-[-2%] sm:w-[168px] lg:left-0 xl:left-[-4%]"
           />
           <FloatingCard
             icon={ChartIcon}
             tint="bg-emerald-50 text-emerald-600"
             title="Product & Technology"
             body="Building digital products with AI"
-            className="top-[10%] right-0 hidden w-[176px] sm:block sm:right-[-4%] lg:right-[-12%]"
+            className="top-[10%] right-0 hidden w-[176px] sm:block sm:right-[-4%] lg:right-0 xl:right-[-12%]"
           />
           <FloatingCard
             icon={MapPinIcon}
             tint="bg-orange-50 text-orange-500"
             title="Based in Bangladesh"
             body="Open to global opportunities"
-            className="top-[58%] right-0 w-[140px] sm:top-[52%] sm:right-[-2%] sm:w-[164px] lg:right-[-8%]"
+            className="top-[64%] right-0 w-[124px] sm:top-[52%] sm:right-[-2%] sm:w-[164px] lg:right-0 xl:right-[-8%]"
           />
         </div>
       </div>
 
       <div className="relative z-20 mx-auto max-w-6xl px-6 pb-16 lg:px-8 lg:pb-20">
-        <dl className="grid grid-cols-1 gap-y-6 rounded-2xl border border-border bg-surface px-6 py-7 shadow-[0_10px_40px_-24px_rgba(15,23,42,0.25)] sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 lg:gap-0 lg:px-4">
+        <dl className="grid grid-cols-1 gap-y-6 rounded-2xl border border-border bg-surface px-6 py-7 shadow-[0_10px_40px_-24px_rgba(15,23,42,0.25)] sm:grid-cols-2 sm:gap-x-6 xl:grid-cols-4 xl:gap-0 xl:px-4">
           {heroStats.map((stat, i) => {
             const { icon: Icon, tint } = STAT_ICONS[i];
             return (
               <div
                 key={stat.label}
-                className={`flex items-center gap-4 lg:px-6 ${i > 0 ? "lg:border-l lg:border-border" : ""}`}
+                className={`flex items-center gap-4 xl:px-6 ${i > 0 ? "xl:border-l xl:border-border" : ""}`}
               >
                 <span className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full ${tint}`}>
                   <Icon className="h-6.5 w-6.5" />

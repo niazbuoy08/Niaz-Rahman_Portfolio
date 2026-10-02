@@ -9,7 +9,7 @@ function Window({ title, children }: { title: string; children: React.ReactNode 
         <span className="h-2.5 w-2.5 rounded-full bg-slate-300" />
         <span className="ml-2 font-mono text-[11px] text-subtle">{title}</span>
       </div>
-      <div className="p-5">{children}</div>
+      <div className="p-4 sm:p-5">{children}</div>
     </div>
   );
 }
@@ -65,15 +65,15 @@ function Churn() {
   const bars = [92, 74, 61, 48, 37, 26];
   return (
     <Window title="churn-retention / overview">
-      <div className="grid grid-cols-3 gap-2.5">
+      <div className="grid grid-cols-3 gap-1.5 sm:gap-2.5">
         {[
           { v: "7,043", l: "Subscribers" },
           { v: "7", l: "Classifiers" },
           { v: "8", l: "KPIs" },
         ].map((k) => (
-          <div key={k.l} className="rounded-xl border border-border px-3 py-2.5">
-            <p className="text-[17px] font-semibold tracking-tight text-foreground">{k.v}</p>
-            <p className="text-[11px] text-subtle">{k.l}</p>
+          <div key={k.l} className="min-w-0 rounded-xl border border-border px-2 py-2.5 sm:px-2.5">
+            <p className="text-[14px] font-semibold tracking-tight text-foreground sm:text-[15px]">{k.v}</p>
+            <p className="truncate text-[10.5px] text-subtle">{k.l}</p>
           </div>
         ))}
       </div>
@@ -130,7 +130,7 @@ function SmartHire() {
       <p className="mt-6 text-[12px] font-medium text-subtle">REST API resources</p>
       <div className="mt-2.5 grid grid-cols-2 gap-2 font-mono text-[11.5px]">
         {["/auth", "/candidates", "/jobs", "/applications"].map((r) => (
-          <span key={r} className="rounded-lg border border-border px-2.5 py-2 text-muted">
+          <span key={r} className="truncate rounded-lg border border-border px-2.5 py-2 text-muted">
             <span className="text-accent">GET</span> {r}
           </span>
         ))}
@@ -149,7 +149,7 @@ export default function ProjectVisual({ slug, compact = false }: { slug: string;
   const Visual = VISUALS[slug];
   if (compact) {
     return (
-      <div className="relative h-[270px] overflow-hidden rounded-xl bg-gradient-to-br from-accent-soft via-background to-background px-5 pt-5">
+      <div className="relative h-[270px] overflow-hidden rounded-xl bg-gradient-to-br from-accent-soft via-background to-background px-3.5 pt-4 sm:px-5 sm:pt-5">
         <div className="bg-grid pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
         <div className="relative transition-transform duration-500 group-hover:-translate-y-1.5">{Visual && <Visual />}</div>
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-background to-transparent" />
